@@ -1,4 +1,4 @@
-import { description, title } from "@/lib/metadata";
+import QuizGame from "@/components/quiz/QuizGame";
 import { generateMetadata } from "@/lib/farcaster-embed";
 import QuizGame from "@/components/quiz/QuizGame";
 
