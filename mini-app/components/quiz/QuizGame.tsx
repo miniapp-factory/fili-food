@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 
 type Question = {
@@ -243,13 +243,7 @@ export default function QuizGame() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const chimeRef = useRef<HTMLAudioElement | null>(null);
-  const buzzerRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    chimeRef.current = new Audio("/chime.mp3");
-    buzzerRef.current = new Audio("/buzzer.mp3");
-  }, []);
 
   const currentQuestion = useMemo(() => {
     if (!level) return null;
@@ -263,10 +257,8 @@ export default function QuizGame() {
       setSelectedOption(option);
       if (option === currentQuestion.answer) {
         setScore((s) => s + 1);
-        chimeRef.current?.play();
         setFeedback("Correct!");
       } else {
-        buzzerRef.current?.play();
         setFeedback(`Wrong! Correct answer: ${currentQuestion.answer}`);
       }
       setTimeout(() => {
@@ -279,7 +271,7 @@ export default function QuizGame() {
         }
       }, 1500);
     },
-    [currentQuestion, questionIndex, chime, buzzer]
+    [currentQuestion, questionIndex]
   );
 
   const restart = useCallback(() => {
