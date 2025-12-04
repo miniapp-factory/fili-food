@@ -1,6 +1,5 @@
 import QuizGame from "@/components/quiz/QuizGame";
 import { generateMetadata } from "@/lib/farcaster-embed";
-import QuizGame from "@/components/quiz/QuizGame";
 
 export { generateMetadata };
 
